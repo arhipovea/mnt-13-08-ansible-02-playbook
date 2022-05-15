@@ -1,0 +1,11 @@
+#cloud-config
+
+users:
+  - name: ansible
+    gecos: Ansible
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    lock_passwd: true
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsNm98LkL4m8DE7dqHjovQt70ImNSNLraHD796CLvIQ7XuqXbMk+3/hhg4q+kHQIr1mkVgOvCvW39A0OxuMIxSvtWZ4fboPGIFzV50Mw1Ikwrd1nxzmcU0gsL+pAEnZmU1BTJrDA+mDNkl9BJnGsEpaaeNm+DwQHWI771gRxUztPdt/rU4b0P1053fIVaJoqn8Lg8+cWByhbLrktdxAfta25JY6dTXrMFLBiMJX20cG3NmwfpsRKHJmyLQmP+HG4i22xbLHjXa9oHEqzAR6xs4R+P+rhX9xaLi99HXVRXMTPbijL/tXLjhQRni4i7FgbzWDFKKwJPy3HllmZd8GLux zica@mizica
