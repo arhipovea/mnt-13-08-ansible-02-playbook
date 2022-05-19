@@ -1,0 +1,5 @@
+---
+clickhouse_01_ext_ip: 51.250.3.42
+clickhouse_01_int_ip: 10.128.0.4
+vector_01_ext_ip: 51.250.69.36
+vector_01_int_ip: 10.128.0.8
