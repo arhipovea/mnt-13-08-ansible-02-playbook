@@ -9,10 +9,8 @@
 ```
 playbook
 ├── group_vars
-│   ├── clickhouse
-│   │   └── vars.yml
-│   └── vector
-│       └── vars.yml
+│   ├── clickhouse.yml
+│   └── vector.yml
 ├── inventory
 │   └── prod.yml
 ├── site.yml
@@ -24,3 +22,4 @@ playbook
 - `clickhouse_version`: версия Clickhouse
 - `clickhouse_packages`: имена пакетов для установки
 - `vector_version`: версия Vector
+- `vector_config`: конфиг vector
