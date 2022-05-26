@@ -1,6 +1,6 @@
 # Clickhouse, Vector on CentOS7
 
-Этот плейбук устанавливает Clickhouse и Vector. 
+Этот плейбук устанавливает Clickhouse, Lighthouse и Vector. 
 
 ## Playbook Structure
 
@@ -10,6 +10,7 @@
 playbook
 ├── group_vars
 │   ├── clickhouse.yml
+│   ├── lighthouse.yml
 │   └── vector.yml
 ├── inventory
 │   └── prod.yml
@@ -23,3 +24,5 @@ playbook
 - `clickhouse_packages`: имена пакетов для установки
 - `vector_version`: версия Vector
 - `vector_config`: конфиг vector
+- `lighthouse_dest`: файлы Lighthouse
+- `lighthouse_uri`: uri Lighthouse

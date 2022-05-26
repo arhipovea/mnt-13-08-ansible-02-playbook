@@ -35,7 +35,7 @@
 
     - name: Clickhouse | Config change (allow from everywhere)
       become: true
-      lineinfile: dest=/etc/clickhouse-server/config.xml
+      ansible.builtin.lineinfile: dest=/etc/clickhouse-server/config.xml
                   regexp='^(.*)<listen_host>0.0.0.0</listen_host>(.*)$'
                   line='    <listen_host>0.0.0.0</listen_host>'
                   state=present
@@ -96,3 +96,53 @@
         name:
           - vector-{{ vector_version }}-1.x86_64.rpm
       notify: Vector | Start vector service
+
+- name: Install Lighthouse
+  hosts: lighthouse
+
+  handlers:
+    - name: Lighthouse | Start nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+
+  tasks:
+    - name: Lighthouse | Install EPEL
+      become: true
+      ansible.builtin.yum:
+        name:
+          - epel-release
+        state: present
+        update_cache: true
+
+    - name: Lighthouse | Install nginx
+      become: true
+      ansible.builtin.yum:
+        name:
+          - nginx
+        state: present
+
+    - name: Lighthouse | Create nginx config
+      become: true
+      ansible.builtin.template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        mode: "0644"
+      notify: Lighthouse | Start nginx service
+
+    - name: Lighthouse | Flush handlers
+      ansible.builtin.meta: flush_handlers
+
+    - name: Lighthouse | Install git
+      become: true
+      ansible.builtin.yum:
+        name:
+          - git
+        state: present
+
+    - name: Lighthouse | Clone lighthouse
+      become: true
+      ansible.builtin.git:
+        repo: "{{ lighthouse_uri }}"
+        dest: "{{ lighthouse_dest }}"
